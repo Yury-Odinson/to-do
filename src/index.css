@@ -44,4 +44,11 @@ code {
 
 .app-body-tasks {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
+
+.app-body-tasks__element {
+  padding: 20px;
+}
+

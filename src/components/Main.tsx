@@ -7,6 +7,8 @@ export const Main = () => {
     const [task, setTask] = useState("")
     const completed = false
 
+    const clearTasks = () => localStorage.clear()
+
     return (
         <div className="app">
             <div className="app-header">
@@ -30,7 +32,7 @@ export const Main = () => {
                 <button>All</button>
                 <button>Active</button>
                 <button>Completed</button>
-                <button>Clear Completed</button>
+                <button onClick={() => clearTasks()}>Clear Completed</button>
 
             </div>
 
