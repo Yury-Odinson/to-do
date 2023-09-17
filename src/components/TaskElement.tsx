@@ -1,20 +1,31 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Task } from "../tools/types"
 
-export const TaskElement = ({ task, completed, id }: Task) => {
+export const TaskElement = ({ task, id }: Task) => {
 
     const [className, setClassName] = useState("app-body-tasks__element")
 
-    const setCompletedTask = (id: string) => {
-        const allTasks = JSON.parse(localStorage.getItem("tasks") || "[]")
+    useEffect(() => setClass(id), [className])
+
+    const allTasks = JSON.parse(localStorage.getItem("tasks") || "[]")
+
+    const setClass = (id: string) => {
         allTasks.map((element: Task) => {
             if (element.id === id) {
-                element.completed = !element.completed
                 if (element.completed === true) {
                     setClassName("app-body-tasks__elementCompleted")
                 } else {
                     setClassName("app-body-tasks__element")
                 }
+            }
+        })
+    }
+
+    const setCompletedTask = (id: string) => {
+        allTasks.map((element: Task) => {
+            if (element.id === id) {
+                element.completed = !element.completed
+                setClass(id)
             }
         })
         localStorage.clear()
@@ -23,7 +34,6 @@ export const TaskElement = ({ task, completed, id }: Task) => {
 
     return (
         <div className={className} id={id} key={id} onClick={() => setCompletedTask(id)}>
-            <input className="task__checkbox" type="checkbox" defaultChecked={completed} />
             <input className="task__text" type="text" defaultValue={task} readOnly />
         </div>
     )

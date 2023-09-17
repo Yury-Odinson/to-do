@@ -26,6 +26,7 @@ input {
   background-color: #ffffff00;
   border: none;
   outline: none;
+  font-size: 1.5rem;
 }
 
 .wrapper {
@@ -52,6 +53,9 @@ input {
 .app-body__button {
   width: 10%;
 }
+.app-body__input {
+  border-bottom: 2px solid #615757;
+}
 
 .app-body-tasks {
   display: flex;
@@ -61,12 +65,16 @@ input {
 .app-body-tasks__element,
 .app-body-tasks__elementCompleted {
   display: flex;
-  padding: 20px 0;
+  padding: 20px 80px;
   border-bottom: 1px solid #afafaf;
+  background-image: url(/public/images/icons8-круг-50.png);
+  background-position: center left 5%;
+  background-repeat: no-repeat;
 }
 
 .app-body-tasks__elementCompleted {
-  background-color: #c55050;
+  background-color: #d4d4d4;
+  background-image: url(/public/images/icons8-галочка-50.png);
 }
 
 .task__checkbox {
