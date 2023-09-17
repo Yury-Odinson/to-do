@@ -20,17 +20,21 @@ code {
     monospace;
 }
 
+input {
+  width: 100%;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 1440px;
-
 }
 
 .app {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 2px solid red;
+  max-width: 600px;
   background-color: #fafafa;
 }
 
@@ -39,16 +43,29 @@ code {
 }
 
 .app-body {
-  border: 2px solid red;
+  padding: 20px;
 }
 
 .app-body-tasks {
-  padding: 20px;
   display: flex;
   flex-direction: column;
 }
 
 .app-body-tasks__element {
+  display: flex;
+  padding: 20px 0;
+}
+
+.task__checkbox {
+  width: 40px;
+  height: 40px;
+}
+
+.app-footer>* {
   padding: 20px;
 }
 
+.app-footer {
+  display: flex;
+  gap: 20px;
+}
