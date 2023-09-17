@@ -21,7 +21,11 @@ code {
 }
 
 input {
-  width: 100%;
+  padding: 10px;
+  width: 90%;
+  background-color: #ffffff00;
+  border: none;
+  outline: none;
 }
 
 .wrapper {
@@ -30,10 +34,9 @@ input {
 }
 
 .app {
-  margin: 0 auto;
+  margin: 100px auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   max-width: 600px;
   background-color: #fafafa;
 }
@@ -46,19 +49,34 @@ input {
   padding: 20px;
 }
 
+.app-body__button {
+  width: 10%;
+}
+
 .app-body-tasks {
   display: flex;
   flex-direction: column;
 }
 
-.app-body-tasks__element {
+.app-body-tasks__element,
+.app-body-tasks__elementCompleted {
   display: flex;
   padding: 20px 0;
+  border-bottom: 1px solid #afafaf;
+}
+
+.app-body-tasks__elementCompleted {
+  background-color: #c55050;
 }
 
 .task__checkbox {
-  width: 40px;
-  height: 40px;
+  margin: auto;
+  width: 10%;
+  height: 100%;
+}
+
+.task__text {
+  cursor: auto;
 }
 
 .app-footer>* {

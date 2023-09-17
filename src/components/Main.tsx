@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { setCurrentTask, tasksStore } from "../tools/storage"
 import { Task } from "../tools/types"
+import { TaskElement } from "./TaskElement"
 
 export const Main = () => {
 
@@ -14,9 +15,13 @@ export const Main = () => {
         setLoaded(true);
     }, [loaded])
 
+    // default value in the task completed
     const completed = false
+
+    // generate random id from the task
     const id = (Math.floor(Math.random() * (100000 - 1)) + 1).toString()
 
+    // remove all tasks
     const clearTasks = () => localStorage.clear()
 
     return (
@@ -25,26 +30,25 @@ export const Main = () => {
                 <h1>todos</h1>
             </div>
             <div className="app-body">
-                <button onClick={() => {
-                    setCurrentTask({ task, completed, id });
-                    setLoaded(false);
-                }}>add task</button>
-                <input className="app-body__input" placeholder="What needs to be done?" onChange={(e) => setTask(e.target.value)} />
+                <button className="app-body__button"
+                    onClick={() => {
+                        setCurrentTask({ task, completed, id });
+                        setLoaded(false);
+                    }}>add task</button>
+                <input placeholder="What needs to be done?" onChange={(e) => setTask(e.target.value)} />
+
                 <div className="app-body-tasks">
                     {
                         tasks.map((element) => {
                             return (
-                                <div className="app-body-tasks__element" id={element.id} key={element.id}>
-                                    <input className="task__checkbox" type="checkbox" defaultChecked={element.completed} />
-                                    <input className="task__input" type="text" defaultValue={element.task} readOnly />
-                                </div>
+                                <TaskElement task={element.task} completed={false} id={element.id} />
                             )
                         })
                     }
                 </div>
             </div>
             <div className="app-footer">
-                <span>2 items</span>
+                <span>{tasks.length !== 0 ? `${tasks.length} items` : null}</span>
                 <button>All</button>
                 <button>Active</button>
                 <button>Completed</button>
