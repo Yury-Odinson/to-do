@@ -20,6 +20,12 @@ code {
     monospace;
 }
 
+h1 {
+  color: #fa9898;
+  font-size: 4rem;
+  font-weight: 300;
+}
+
 input {
   padding: 10px;
   width: 90%;
@@ -29,6 +35,15 @@ input {
   font-size: 1.5rem;
 }
 
+button {
+  border: none;
+  background-color: #ffffff00;
+}
+
+span {
+  font-size: 12px;
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 1440px;
@@ -36,25 +51,39 @@ input {
 
 .app {
   margin: 100px auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   max-width: 600px;
-  background-color: #fafafa;
+  background: rgb(218, 218, 218);
+  background: linear-gradient(350deg, rgba(218, 218, 218, 1) 0%, rgba(238, 238, 238, 1) 35%, rgba(233, 233, 233, 1) 100%);
 }
 
 .app-header {
+  margin: 0 auto;
   padding: 20px;
 }
 
 .app-body {
+  background-color: #fff;
   padding: 20px;
 }
 
 .app-body__button {
-  width: 10%;
+  width: 48px;
+  height: 48px;
+  background-image: url(/public/images/icons8-стрелка-вниз-48.png);
+  border-radius: 50%;
 }
+
+.app-body-entry {
+  margin-bottom: 50px;
+  display: flex;
+}
+
 .app-body__input {
-  border-bottom: 2px solid #615757;
+  padding: 0 40px;
+  border-bottom: 1px solid #615757;
 }
 
 .app-body-tasks {
@@ -68,11 +97,13 @@ input {
   padding: 20px 80px;
   border-bottom: 1px solid #afafaf;
   background-image: url(/public/images/icons8-круг-50.png);
-  background-position: center left 5%;
+  background-position: center left;
   background-repeat: no-repeat;
 }
 
 .app-body-tasks__elementCompleted {
+  color: #afafaf;
+  text-decoration: line-through;
   background-color: #d4d4d4;
   background-image: url(/public/images/icons8-галочка-50.png);
 }
@@ -88,10 +119,31 @@ input {
 }
 
 .app-footer>* {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .app-footer {
+  margin: 20px 0;
   display: flex;
   gap: 20px;
+}
+
+.app-footer__button,
+.app-footer__buttonActive {
+  padding: 0;
+  width: 80px;
+  height: 40px;
+  padding: 0;
+  border-bottom: 1px solid #fa9898;
+}
+
+.app-footer__button:last-child {
+  margin-left: 50px;
+  background-color: #fff2f2;
+  color: #6b6b6b;
+}
+
+.app-footer__buttonActive {
+  border: 1px solid #fa9898;
+  border-radius: 10px;
 }

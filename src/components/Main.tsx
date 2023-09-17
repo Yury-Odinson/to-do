@@ -8,6 +8,7 @@ export const Main = () => {
     const [task, setTask] = useState("")
     const [tasks, setTasks] = useState<Task[]>([])
     const [loaded, setLoaded] = useState(false)
+    const [tab, setTab] = useState("All" || "Active" || "Completed")
 
     useEffect(() => {
         if (loaded) return;
@@ -30,19 +31,25 @@ export const Main = () => {
         setTasks(allTasks.filter((element: Task) => element.completed === value))
     }
 
+    const activeTab = (tabName: string) => {
+        return tab === tabName ? "app-footer__buttonActive" : "app-footer__button"
+    }
+
     return (
         <div className="app">
             <div className="app-header">
                 <h1>todos</h1>
             </div>
             <div className="app-body">
-                <button className="app-body__button"
-                    onClick={() => {
-                        setCurrentTask({ task, completed, id });
-                        setLoaded(false);
-                        setTask("");
-                    }}>add task</button>
-                <input className="app-body__input" placeholder="What needs to be done?" onChange={(e) => setTask(e.target.value)} value={task} />
+                <div className="app-body-entry">
+                    <button className="app-body__button"
+                        onClick={() => {
+                            setCurrentTask({ task, completed, id });
+                            setLoaded(false);
+                            setTask("");
+                        }} />
+                    <input className="app-body__input" placeholder="What needs to be done?" onChange={(e) => setTask(e.target.value)} value={task} />
+                </div>
 
                 <div className="app-body-tasks">
                     {
@@ -56,10 +63,19 @@ export const Main = () => {
             </div>
             <div className="app-footer">
                 <span>{tasks.length !== 0 ? `${tasks.length} items` : null}</span>
-                <button onClick={() => setTasks(JSON.parse(localStorage.getItem("tasks") || "[]"))}>All</button>
-                <button onClick={() => loadSpecificTask(false)}>Active</button>
-                <button onClick={() => loadSpecificTask(true)}>Completed</button>
-                <button onClick={() => {
+                <button className={activeTab("All")} onClick={() => {
+                    setTasks(JSON.parse(localStorage.getItem("tasks") || "[]"));
+                    setTab("All")
+                }}>All</button>
+                <button className={activeTab("Active")} onClick={() => {
+                    loadSpecificTask(false);
+                    setTab("Active")
+                }}>Active</button>
+                <button className={activeTab("Completed")} onClick={() => {
+                    loadSpecificTask(true);
+                    setTab("Completed")
+                }}>Completed</button>
+                <button className="app-footer__button" onClick={() => {
                     tasksStore.length = 0;
                     clearTasks();
                     setLoaded(false);
