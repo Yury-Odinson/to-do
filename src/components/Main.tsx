@@ -40,8 +40,9 @@ export const Main = () => {
                     onClick={() => {
                         setCurrentTask({ task, completed, id });
                         setLoaded(false);
+                        setTask("");
                     }}>add task</button>
-                <input className="app-body__input" placeholder="What needs to be done?" onChange={(e) => setTask(e.target.value)} />
+                <input className="app-body__input" placeholder="What needs to be done?" onChange={(e) => setTask(e.target.value)} value={task} />
 
                 <div className="app-body-tasks">
                     {
