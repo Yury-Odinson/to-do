@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
-import { setCurrentTask, tasksStore } from "../tools/storage"
-import { Task } from "../tools/types"
-import { TaskElement } from "./TaskElement"
+import {useEffect, useState} from "react"
+import {setCurrentTask, tasksStore} from "../tools/storage"
+import {Task} from "../tools/types"
+import {TaskElement} from "./TaskElement"
 
 export const Main = () => {
 
@@ -36,50 +36,56 @@ export const Main = () => {
     }
 
     return (
-        <div className="app">
-            <div className="app-header">
-                <h1>todos</h1>
+        <div className="m-auto p-10 flex-1 w-3/4 shadow-2xl bg-white rounded-3xl">
+            <div>
+                <h1 className="text-6xl">todos</h1>
             </div>
-            <div className="app-body">
-                <div className="app-body-entry">
+            <div className="py-10 px-5">
+                <div className="pb-10">
                     <button className="app-body__button"
-                        onClick={() => {
-                            setCurrentTask({ task, completed, id });
-                            setLoaded(false);
-                            setTask("");
-                        }} />
-                    <input className="app-body__input" placeholder="What needs to be done?" onChange={(e) => setTask(e.target.value)} value={task} />
+                            onClick={() => {
+                                setCurrentTask({task, completed, id});
+                                setLoaded(false);
+                                setTask("");
+                            }}/>
+                    <input className="app-body__input" placeholder="What needs to be done?"
+                           onChange={(e) => setTask(e.target.value)} value={task}/>
                 </div>
 
-                <div className="app-body-tasks">
+                <div>
                     {
                         tasks.map((element) => {
                             return (
-                                <TaskElement task={element.task} completed={element.completed} id={element.id} key={element.id} />
+                                <TaskElement task={element.task} completed={element.completed} id={element.id}
+                                             key={element.id}/>
                             )
                         })
                     }
                 </div>
             </div>
-            <div className="app-footer">
+            <div className="px-10 py-5 flex gap-5 items-center">
                 <span>{tasks.length !== 0 ? `${tasks.length} items` : null}</span>
                 <button className={activeTab("All")} onClick={() => {
                     setTasks(JSON.parse(localStorage.getItem("tasks") || "[]"));
                     setTab("All")
-                }}>All</button>
+                }}>All
+                </button>
                 <button className={activeTab("Active")} onClick={() => {
                     loadSpecificTask(false);
                     setTab("Active")
-                }}>Active</button>
+                }}>Active
+                </button>
                 <button className={activeTab("Completed")} onClick={() => {
                     loadSpecificTask(true);
                     setTab("Completed")
-                }}>Completed</button>
+                }}>Completed
+                </button>
                 <button className="app-footer__button" onClick={() => {
                     tasksStore.length = 0;
                     clearTasks();
                     setLoaded(false);
-                }}>Clear Completed</button>
+                }}>Clear Completed
+                </button>
             </div>
         </div>
     )
